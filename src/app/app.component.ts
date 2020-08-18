@@ -1,27 +1,39 @@
 import {Component, OnInit} from '@angular/core';
 import {Card} from './models/Card';
 
+// main component
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  // app title
   title = 'SimplePagination';
+  // cards that will be displayed
   cards: Array<Card> = [];
+  // if true then show modal to update card
   updateActive: boolean;
+  // pass selected card to update to modal component
   cardToUpdate: Card;
+  // total number of pages
   page: number;
+  // current page
   currentPage: number;
+  // start index of the array to start from to display
   indexStart: number;
+  // end index of the array till end to display
   indexEnd: number;
+  // number of cards per page
   limit: number;
 
+  // temp card name and description
   name = 'Lorem Ipsum name';
   description = 'Lorem Ipsum description for test purpose';
 
   // set initial values for pagination
   ngOnInit(): void {
+    // create temp cards
     for (let i = 0; i < 7; i++){
       const card: Card = new Card(
         i.toString(),
@@ -30,11 +42,13 @@ export class AppComponent implements OnInit{
       );
       this.cards.push(card);
     }
+    // set initial values to use
     this.limit = 5;
     this.indexStart = 0;
     this.currentPage = 1;
     this.updateActive = false;
     this.cardToUpdate = null;
+    // update number of pages, start index and end index
     this.updateIndices();
   }
 
