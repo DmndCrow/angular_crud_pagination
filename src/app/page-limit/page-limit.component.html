@@ -1,0 +1,10 @@
+<form class="limit-container">
+  <input class="input-elem"
+         type="number"
+         [min]="limitMin"
+         [max]="limitMax"
+         (change)="onChange($event)"
+         [value]="limit"
+
+  />
+</form>

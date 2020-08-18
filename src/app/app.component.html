@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="data-input">
+    <app-input (notifySubmit)="createCard($event)"></app-input>
+    <app-page-limit (notifyLimit)="updateLimit($event)"></app-page-limit>
+  </div>
+
+
+  <div class="cards">
+    <li *ngFor="let card of cards.slice(indexStart, indexEnd); index as i;">
+      <app-card
+        [index]="i"
+        [card]="card"
+        (deleteCardItem)="deleteCard($event)">
+
+      </app-card>
+    </li>
+  </div>
+
+  <div class="pagination">
+    <app-pagination
+      [page]="page"
+      [current]="currentPage"
+      (notifyUpdatePage)="setCurrentPage($event)">
+
+    </app-pagination>
+  </div>
+
+</div>

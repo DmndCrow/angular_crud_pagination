@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 960px;
+  margin: 25px auto;
+  min-height: 150px;
+  border: 1px solid greenyellow;
+}
+
+.cards {
+  max-width: 700px;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+

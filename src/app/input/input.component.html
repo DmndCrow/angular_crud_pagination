@@ -1,0 +1,19 @@
+<form class="input-container">
+  <input class="input-elem"
+         placeholder="Card Name"
+         (change)="onChangeName($event)"
+         [value]="name"
+  />
+
+  <input class="input-elem"
+         placeholder="Card Description"
+         (change)="onChangeDescription($event)"
+         [value]="description"
+  />
+
+  <button class="input-elem button-elem"
+          (click)="submit($event)">
+    Create
+  </button>
+
+</form>

@@ -1,0 +1,11 @@
+.limit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-elem {
+  border-radius: 4px;
+  width: 56px;
+  height: 24px;
+}

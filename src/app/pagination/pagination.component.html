@@ -1,0 +1,11 @@
+<ul *ngFor="let number of numbers;">
+  <li *ngIf="number === current; else otherCondition">
+    <label [ngStyle]="{color:'red'}">{{number}}</label>
+  </li>
+
+  <ng-template #otherCondition>
+    <label [ngStyle]="{color:'blue'}" (click)="updatePage(number)">
+      {{number}}
+    </label>
+  </ng-template>
+</ul>
