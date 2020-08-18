@@ -33,15 +33,8 @@ export class AppComponent implements OnInit{
 
   // set initial values for pagination
   ngOnInit(): void {
-    // create temp cards
-    for (let i = 0; i < 7; i++){
-      const card: Card = new Card(
-        i.toString(),
-        this.name + i,
-        this.description + i
-      );
-      this.cards.push(card);
-    }
+    // load cards from localstorage
+    this.cards = JSON.parse(localStorage['cards'.toString()]);
     // set initial values to use
     this.limit = 5;
     this.indexStart = 0;
@@ -57,6 +50,7 @@ export class AppComponent implements OnInit{
     // we want to generate card with unique id
     card.id = card.generateId(this.cards);
     this.cards.push(card);
+    localStorage.setItem('cards', JSON.stringify(this.cards));
     // update related values after adding new card to the array
     this.updateIndices();
   }
@@ -73,12 +67,14 @@ export class AppComponent implements OnInit{
     this.cardToUpdate = null;
     const index = this.cards.findIndex(val => val.id === card.id);
     this.cards[index] = card;
+    localStorage.setItem('cards', JSON.stringify(this.cards));
   }
 
   // delete card
   deleteCard = (card: Card) => {
     // filter cards by removing one that has id of a card we get from child
     this.cards = this.cards.filter(val => val.id !== card.id);
+    localStorage.setItem('cards', JSON.stringify(this.cards));
     // update related values after deleting card
     this.updateIndices();
   }

@@ -1,7 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {Component, Input} from '@angular/core';
+import {Card} from './models/Card';
+
+@Component({selector: 'app-card', template: ''})
+class CardComponent {
+  @Input() card: Card;
+}
 
 describe('AppComponent', () => {
+  let cardComponent: CardComponent;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -16,16 +25,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'SimplePagination'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('SimplePagination');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('SimplePagination app is running!');
+  it('Should pass card to app-card', () => {
+    expect(cardComponent).toBeTruthy();
   });
 });
