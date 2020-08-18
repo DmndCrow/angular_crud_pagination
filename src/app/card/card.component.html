@@ -1,7 +1,25 @@
-<div class="card">
-  <div>
-    <p>Name: {{card.name}}</p>
-    <p>Description: {{card.description}}</p>
+<ng-container class="container-card">
+  <div class="card-header">
+    <span>{{card.name}}</span>
   </div>
-  <button (click)="deleteCard()">fa-trash</button>
-</div>
+
+  <div class="card-body">
+    <span>{{card.description}}</span>
+  </div>
+
+  <div class="card-footer">
+    <button
+      (click)="editCard()" class="card-button"
+      [style]="{background: 'lightblue'}"
+    >
+      ✏️
+    </button>
+
+    <button
+      (click)="deleteCard()" class="card-button"
+      [style]="{background: '#411414'}"
+    >
+      ❌
+    </button>
+  </div>
+</ng-container>

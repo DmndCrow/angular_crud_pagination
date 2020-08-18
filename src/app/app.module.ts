@@ -6,6 +6,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { CardComponent } from './card/card.component';
 import { InputComponent } from './input/input.component';
 import { PageLimitComponent } from './page-limit/page-limit.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PageLimitComponent } from './page-limit/page-limit.component';
     PaginationComponent,
     CardComponent,
     InputComponent,
-    PageLimitComponent
+    PageLimitComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule

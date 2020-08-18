@@ -9,21 +9,32 @@ import {Card} from './models/Card';
 export class AppComponent implements OnInit{
   title = 'SimplePagination';
   cards: Array<Card> = [];
+  updateActive: boolean;
+  cardToUpdate: Card;
   page: number;
   currentPage: number;
   indexStart: number;
   indexEnd: number;
   limit: number;
 
+  name = 'Lorem Ipsum name';
+  description = 'Lorem Ipsum description for test purpose';
+
   // set initial values for pagination
   ngOnInit(): void {
     for (let i = 0; i < 7; i++){
-      const card: Card = new Card(i.toString(), 'test' + i, '__repr__' + i);
+      const card: Card = new Card(
+        i.toString(),
+        this.name + i,
+        this.description + i
+      );
       this.cards.push(card);
     }
     this.limit = 5;
     this.indexStart = 0;
     this.currentPage = 1;
+    this.updateActive = false;
+    this.cardToUpdate = null;
     this.updateIndices();
   }
 
@@ -36,6 +47,20 @@ export class AppComponent implements OnInit{
     this.updateIndices();
   }
 
+  // update card
+  updateCard = (card: Card) => {
+    this.cardToUpdate = card;
+    this.updateActive = true;
+  }
+
+  // save updated card that we get from child component
+  saveUpdatedCard = (card: Card) => {
+    this.updateActive = false;
+    this.cardToUpdate = null;
+    const index = this.cards.findIndex(val => val.id === card.id);
+    this.cards[index] = card;
+  }
+
   // delete card
   deleteCard = (card: Card) => {
     // filter cards by removing one that has id of a card we get from child
@@ -46,9 +71,13 @@ export class AppComponent implements OnInit{
 
   // get new current index of the page from child component
   setCurrentPage = (val: number) => {
-    this.currentPage = val;
-    // update related values after updating current page
-    this.updateIndices();
+    // check to prevent val = 0 and val > number of pages
+    if (val > 0 && val <= this.page){
+      this.currentPage = val;
+      // update related values after updating current page
+      this.updateIndices();
+    }
+
   }
 
   // get new limit value from child component

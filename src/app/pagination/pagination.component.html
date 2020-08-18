@@ -1,11 +1,33 @@
-<ul *ngFor="let number of numbers;">
-  <li *ngIf="number === current; else otherCondition">
-    <label [ngStyle]="{color:'red'}">{{number}}</label>
-  </li>
+<div class="pagination">
+  <ul>
+    <span>
+      <li (click)="clickLeft()">
+        <span>
+          &laquo;
+        </span>
+      </li>
+    </span>
 
-  <ng-template #otherCondition>
-    <label [ngStyle]="{color:'blue'}" (click)="updatePage(number)">
-      {{number}}
-    </label>
-  </ng-template>
-</ul>
+    <div *ngFor="let number of numbers;" class="pagination-body">
+      <span (click)="updatePage(number)">
+        <li *ngIf="number === current; else otherCondition" class="active-page">
+          <span>{{number}}</span>
+        </li>
+        <ng-template #otherCondition>
+          <li>
+            <span class="non-active-page">{{number}}</span>
+          </li>
+        </ng-template>
+      </span>
+    </div>
+
+    <span>
+      <li (click)="clickRight()">
+        <span>
+          &raquo;
+        </span>
+      </li>
+    </span>
+
+  </ul>
+</div>
