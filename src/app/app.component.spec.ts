@@ -1,31 +1,63 @@
-import { TestBed, async } from '@angular/core/testing';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Card} from './models/Card';
 
 @Component({selector: 'app-card', template: ''})
 class CardComponent {
   @Input() card: Card;
+  @Output() deleteCardItem: EventEmitter<Card> = new EventEmitter<Card>();
+  @Output() updateCardItem: EventEmitter<Card> = new EventEmitter<Card>();
+}
+
+@Component({selector: 'app-input', template: ''})
+class InputComponent {
+  @Output() notifySubmit: EventEmitter<Card> = new EventEmitter<Card>();
+}
+
+@Component({selector: 'app-modal', template: ''})
+class ModalComponent {
+  @Input() active: boolean;
+  @Input() card: Card;
+  @Output() updateCardItem: EventEmitter<Card> = new EventEmitter<Card>();
+}
+
+@Component({selector: 'app-page-limit', template: ''})
+class PageLimitComponent {
+  @Output() notifyLimit: EventEmitter<any> = new EventEmitter<any>();
+}
+
+@Component({selector: 'app-pagination', template: ''})
+class PaginationComponent {
+  @Input() page: number;
+  @Input() current: number;
+  @Output() notifyUpdatePage: EventEmitter<number> = new EventEmitter<number>();
 }
 
 describe('AppComponent', () => {
-  let cardComponent: CardComponent;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CardComponent,
+        InputComponent,
+        ModalComponent,
+        PageLimitComponent,
+        PaginationComponent,
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
-  it('Should pass card to app-card', () => {
-    expect(cardComponent).toBeTruthy();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
+
 });

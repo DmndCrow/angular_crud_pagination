@@ -22,7 +22,7 @@
 
 .modal-button-container {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   flex-direction: row;
 }
 

@@ -11,7 +11,9 @@ describe('CardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardComponent ]
+      declarations: [
+        CardComponent,
+      ]
     })
     .compileComponents();
   }));
@@ -26,15 +28,5 @@ describe('CardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('It should be card name from parent component in card component', () => {
-    fixture.detectChanges();
-    expect(header.textContent).toContain(component.card.name);
-  });
-
-  it('It should be card description from parent component in card component', () => {
-    fixture.detectChanges();
-    expect(body.textContent).toContain(component.card.description);
   });
 });
