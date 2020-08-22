@@ -19,16 +19,16 @@ export class InputComponent implements OnInit{
   }
 
   // update card name
-  onChangeName = (ev) => {
+  onChangeName(ev): void {
     this.card.name = ev.target.value;
   }
   // update card description
-  onChangeDescription = (ev) => {
+  onChangeDescription(ev): void {
     this.card.description = ev.target.value;
   }
 
   // start emitter to save card
-  submit = (ev) => {
+  submit(ev): void {
     ev.preventDefault();
     // check if card name is not empty
     if (this.card.name.length) {

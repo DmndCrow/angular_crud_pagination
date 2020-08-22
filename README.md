@@ -1,23 +1,55 @@
 # SimplePagination
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6. Project has simple pagination that displays cards and each card has CRUD (create, read, update delete) options.
+Project has simple pagination that displays Cards and adds CRUD functionality using Angular 10.
 
-## Installations
+## Table of Contents
+- [Installation](#Installation)
+- [Running](#Running)
+- [Usage](#Usage)
+- [Test](#Test)
+- [Author](#Author)
 
-* ```git clone https://github.com/DmndCrow/simplePagination```
-* ```cd simplePagination```
-* Run `ng serve` for a dev server. 
-* Navigate to `http://localhost:4200/`. 
+## Prerequisites
+- [Node.js](https://nodejs.org/en/)
 
+## Installation
 
-## Running unit tests
+Download the project
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`git clone https://github.com/DmndCrow/simplePagination`
 
-## Running end-to-end tests
+Go to the folder with project
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`cd simplePagination`
 
-## Further help
+Install npm packages
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+`npm install --dev`
+
+## Running
+
+Run dev server 
+
+`ng serve`
+
+Open in Browser
+http://localhost:4200/
+
+## Usage
+
+Each card has CRUD actions:
+- **CREATE** - Cards can be created using inputs, provided on top of the page.
+- **READ** - Cards can be seen on the middle of the screen. There is also option
+to paginate through Card list.
+- **UPDATE** - Each Card has button to update the content of Card. This button opens
+modal page, in which we can enter new values for this Card.
+- **DELETE** - Each Card can be deleted using the delete button on Card.
+
+## Test
+
+To run unit tests via [Karma](https://karma-runner.github.io), execute
+`ng test`
+
+## Author
+
+- [Aibek Ziyashev](https://github.com/DmndCrow/)

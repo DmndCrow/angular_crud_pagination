@@ -26,27 +26,40 @@ export class AppComponent implements OnInit{
   indexEnd: number;
   // number of cards per page
   limit: number;
-
-  // temp card name and description
-  name = 'Lorem Ipsum name';
-  description = 'Lorem Ipsum description for test purpose';
+  // borders of cards per page
+  limitMin: number;
+  limitMax: number;
 
   // set initial values for pagination
   ngOnInit(): void {
     // load cards from localstorage
-    this.cards = JSON.parse(localStorage['cards'.toString()]);
+    this.handleLocalStorage();
     // set initial values to use
+    this.handleInitValues();
+    // update number of pages, start index and end index
+    this.updateIndices();
+  }
+  // upload data from local storage or create local storage item
+  handleLocalStorage(): void {
+    if ('cards' in localStorage){
+      this.cards = JSON.parse(localStorage['cards'.toString()]);
+    }else{
+      this.cards = [];
+      localStorage.setItem('cards', JSON.stringify(this.cards));
+    }
+  }
+  // set up initial values
+  handleInitValues(): void {
     this.limit = 5;
+    this.limitMin = 2;
+    this.limitMax = 10;
     this.indexStart = 0;
     this.currentPage = 1;
     this.updateActive = false;
     this.cardToUpdate = null;
-    // update number of pages, start index and end index
-    this.updateIndices();
   }
-
   // create new card
-  createCard = (card: Card) => {
+  createCard(card: Card): void {
     // we want to generate card with unique id
     card.id = card.generateId(this.cards);
     this.cards.push(card);
@@ -56,13 +69,13 @@ export class AppComponent implements OnInit{
   }
 
   // update card
-  updateCard = (card: Card) => {
+  updateCard(card: Card): void {
     this.cardToUpdate = card;
     this.updateActive = true;
   }
 
   // save updated card that we get from child component
-  saveUpdatedCard = (card: Card) => {
+  saveUpdatedCard(card: Card): void {
     this.updateActive = false;
     this.cardToUpdate = null;
     const index = this.cards.findIndex(val => val.id === card.id);
@@ -80,7 +93,7 @@ export class AppComponent implements OnInit{
   }
 
   // get new current index of the page from child component
-  setCurrentPage = (val: number) => {
+  setCurrentPage(val: number): void {
     // check to prevent val = 0 and val > number of pages
     if (val > 0 && val <= this.page){
       this.currentPage = val;
@@ -91,20 +104,20 @@ export class AppComponent implements OnInit{
   }
 
   // get new limit value from child component
-  updateLimit = (limit: number) => {
+  updateLimit(limit: number): void {
     this.limit = limit;
     // update related values after updating limit value
     this.updateIndices();
   }
 
   // call functions that handle update
-  updateIndices = () => {
+  updateIndices(): void {
     this.updatePage();
     this.updateIndexStart();
   }
 
   // set new total page number using array length and page limit
-  updatePage = () => {
+  updatePage(): void {
     // calculate min page number by using Math.floor
     // if we have 9 or 10 cards and limit is 3, then number pages = 3
     this.page = Math.floor(this.cards.length / this.limit);
@@ -116,7 +129,7 @@ export class AppComponent implements OnInit{
   }
 
   // calculate new start index for current page
-  updateIndexStart = () => {
+  updateIndexStart(): void {
     // current page starts from 1, and index of array from 0, thus currentPage - 1,
     // and then * limit to calculate start index for current page
     this.indexStart = (this.currentPage - 1) * this.limit;
@@ -124,8 +137,8 @@ export class AppComponent implements OnInit{
     this.updateIndexEnd();
   }
 
-  // calucate new end index for current page
-  updateIndexEnd = () => {
+  // calculate new end index for current page
+  updateIndexEnd(): void {
     // find minimum between array size and start index + limit, because in some cases sum may be greater
     // use a - -b instead of a + b, because we have numbers and not integers
     this.indexEnd = Math.min(this.indexStart - -this.limit, this.cards.length);

@@ -9,7 +9,7 @@ export class Card {
     this.description = description;
   }
 
-  generateId = (cards: Array<Card>) => {
+  generateId(cards: Array<Card>): string {
     while (true) {
       const newId = this.getUUID();
       const obj = cards.findIndex(card => card.id === newId);
@@ -19,19 +19,12 @@ export class Card {
     }
   }
 
-  getUUID = () => {
-    // _p8 = (s) => {
-    //   const p = (Math.random().toString(16) + '000000000').substr(2, 8);
-    //   return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
-    // };
+  getUUID(): string {
+    return this.generate() + this.generate(true) + this.generate(true) + this.generate();
+  }
 
-    // tslint:disable-next-line:typedef
-    function generate(s) {
-      const p = (Math.random().toString(16) + '000000000').substr(2, 8);
-      return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
-    }
-
-    // @ts-ignore
-    return generate() + generate(true) + generate(true) + generate();
-  };
+  generate(s?): string {
+    const p = (Math.random().toString(16) + '000000000').substr(2, 8);
+    return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
+  }
 }

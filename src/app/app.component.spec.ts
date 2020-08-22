@@ -24,6 +24,9 @@ class ModalComponent {
 
 @Component({selector: 'app-page-limit', template: ''})
 class PageLimitComponent {
+  @Input() limitMin: number;
+  @Input() limitMax: number;
+  @Input() limit: number;
   @Output() notifyLimit: EventEmitter<any> = new EventEmitter<any>();
 }
 

@@ -17,11 +17,11 @@ export class CardComponent {
   @Output() updateCardItem: EventEmitter<Card> = new EventEmitter<Card>();
 
   // function to delete emitter
-  deleteCard = () => {
+  deleteCard(): void {
     this.deleteCardItem.emit(this.card);
   }
   // function that will force to open modal
-  editCard = () => {
+  editCard(): void {
     this.updateCardItem.emit(this.card);
   }
 }

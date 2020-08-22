@@ -17,27 +17,25 @@ export class ModalComponent implements OnChanges {
   // data that will be saved from inputs
   newCard: Card;
 
-  constructor() { }
-
   // set card from parent to child
   ngOnChanges(): void {
     this.newCard = this.card;
   }
   // update card name
-  changeCardName = (ev) => {
+  changeCardName(ev): void {
     this.newCard.name = ev.target.value;
   }
   // update card description
-  changeCardDescription = (ev) => {
+  changeCardDescription(ev): void {
     this.newCard.description = ev.target.value;
   }
 
   // save new name and description
-  saveCardUpdate = () => {
+  saveCardUpdate(): void {
     this.updateCardItem.emit(this.card);
   }
   // cancel update and return original card
-  cancelCardUpdate = () => {
+  cancelCardUpdate(): void {
     this.updateCardItem.emit(this.card);
   }
 }
